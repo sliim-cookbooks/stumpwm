@@ -17,6 +17,7 @@
 #
 
 default['stumpwm']['build_dir'] = '/opt/stumpwm'
+default['stumpwm']['quicklisp_dir'] = '/opt/quicklisp'
 default['stumpwm']['version'] = '0.9.8'
 
 case node['platform']

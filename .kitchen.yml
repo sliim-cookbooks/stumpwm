@@ -16,6 +16,7 @@ suites:
   - recipe[stumpwm::xsession]
   attributes: {
     stumpwm: {
-      build_dir: "/opt/stumpwm"
+      build_dir: "/opt/stumpwm",
+      quicklisp_dir: "/opt/quicklisp"
     }
   }

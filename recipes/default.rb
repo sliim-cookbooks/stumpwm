@@ -29,11 +29,13 @@ remote_file Chef::Config[:file_cache_path] + '/ql.lisp' do
   mode 644
 end
 
-cookbook_file Chef::Config[:file_cache_path] + '/sbcl.init' do
-  source 'sbcl.init'
+template Chef::Config[:file_cache_path] + '/sbcl.init' do
+  source 'sbcl.init.erb'
+  mode 0644
+  variables 'qldir' => node['stumpwm']['quicklisp_dir']
 end
 
-unless Dir.exist? '/opt/quicklisp'
+unless Dir.exist? node['stumpwm']['quicklisp_dir']
   execute 'init sbcl' do
     cwd Chef::Config[:file_cache_path]
     command 'echo | sbcl --load ql.lisp --script sbcl.init'
