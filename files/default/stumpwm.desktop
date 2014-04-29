@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=XSession
+Exec=/usr/local/bin/stumpwm
+Name=Stumpwm
+Comment=The Stump Window Manager

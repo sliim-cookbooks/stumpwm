@@ -1,0 +1,5 @@
+(quicklisp-quickstart:install :path "/opt")
+(ql:add-to-init-file t)
+(ql:quickload "clx")
+;; (ql:quickload "clx-truetype")
+(ql:quickload "cl-ppcre")
