@@ -4,6 +4,9 @@ Download and install The Stump Window Manager.
 
 Requirements
 ------------
+#### Cookbooks
+- `apt` - `http://community.opscode.com/cookbooks/apt`
+
 #### Platforms
 The following platforms and versions are tested and supported using Opscode's test-kitchen.
 - Debian wheezy
