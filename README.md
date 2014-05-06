@@ -1,6 +1,7 @@
 stumpwm Cookbook
 ================
-Download and install The Stump Window Manager.
+Download and install The Stump Window Manager.  
+[![Build Status](https://travis-ci.org/Sliim/stumpwm-cookbook.svg?branch=master)](https://travis-ci.org/Sliim/stumpwm-cookbook)
 
 Requirements
 ------------
