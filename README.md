@@ -1,7 +1,7 @@
 stumpwm Cookbook
 ================
 Download and install The Stump Window Manager.  
-[![Cookbook Version](https://img.shields.io/cookbook/v/stumpwm.svg)](https://community.opscode.com/cookbooks/stumpwm) [![Build Status](https://travis-ci.org/Sliim/stumpwm-cookbook.svg?branch=master)](https://travis-ci.org/Sliim/stumpwm-cookbook)
+[![Cookbook Version](https://img.shields.io/cookbook/v/stumpwm.svg)](https://community.opscode.com/cookbooks/stumpwm) [![Build Status](https://travis-ci.org/sliim-cookbooks/stumpwm.svg?branch=master)](https://travis-ci.org/sliim-cookbooks/stumpwm) 
 
 Requirements
 ------------
