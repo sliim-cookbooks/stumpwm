@@ -1,5 +1,4 @@
-# encoding: utf-8
-
+# -*- coding: utf-8 -*-
 source 'https://rubygems.org'
 
 gem 'chef', '~> 11.12.2'

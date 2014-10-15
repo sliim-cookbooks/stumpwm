@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 #
 # Cookbook Name:: stumpwm
 # Recipe:: xsession
@@ -17,6 +17,9 @@
 #
 
 directory '/usr/share/xsessions' do
+  owner 'root'
+  group 'root'
+  mode '0755'
   action :create
 end
 

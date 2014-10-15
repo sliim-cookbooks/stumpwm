@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 #
 # Cookbook Name:: stumpwm
 # Recipe:: default
@@ -19,19 +19,17 @@
 include_recipe 'apt'
 
 node['stumpwm']['packages'].each do |pkg|
-  package pkg do
-    action :install
-  end
+  package pkg
 end
 
 remote_file Chef::Config[:file_cache_path] + '/ql.lisp' do
   source 'http://beta.quicklisp.org/quicklisp.lisp'
-  mode 644
+  mode '0644'
 end
 
 template Chef::Config[:file_cache_path] + '/sbcl.init' do
   source 'sbcl.init.erb'
-  mode 0644
+  mode '0644'
   variables 'qldir' => node['stumpwm']['quicklisp_dir']
 end
 
@@ -51,10 +49,7 @@ remote_file localfile do
 end
 
 directory node['stumpwm']['build_dir'] do
-  owner 'root'
-  group 'root'
   mode '0755'
-  action :create
   recursive true
 end
 

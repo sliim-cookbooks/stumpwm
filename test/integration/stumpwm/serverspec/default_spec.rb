@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 #
 # Cookbook Name:: stumpwm
 # Recipe:: default
@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+require 'serverspec'
 
 describe file('/opt/stumpwm') do
   it { should be_directory }
@@ -32,4 +32,5 @@ end
 
 describe file('/usr/local/bin/stumpwm') do
   it { should be_file }
+  it { should be_executable }
 end

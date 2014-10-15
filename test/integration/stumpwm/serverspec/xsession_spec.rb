@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 #
 # Cookbook Name:: stumpwm
 # Recipe:: xsession
@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-require 'spec_helper'
+require 'serverspec'
 
 describe file('/usr/share/xsessions/stumpwm.desktop') do
   it { should be_file }

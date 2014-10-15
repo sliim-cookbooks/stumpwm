@@ -1,6 +1,4 @@
-# -*- ruby -*-
 site :opscode
 
 metadata
-
-cookbook "apt"
+cookbook 'apt'

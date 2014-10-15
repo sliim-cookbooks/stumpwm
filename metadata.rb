@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -21,4 +21,8 @@ description      'Installs/Configures Stumpwm'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.1'
 
+recipe 'default', 'Install and configure StumpWM'
+recipe 'xsession', 'Create xsession desktop file'
+
 depends 'apt'
+supports 'debian'
