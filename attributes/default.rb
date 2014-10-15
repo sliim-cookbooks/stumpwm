@@ -1,4 +1,4 @@
-# encoding: utf-8
+# -*- coding: utf-8 -*-
 #
 # Cookbook Name:: stumpwm
 # Attributes:: default
@@ -19,6 +19,7 @@
 default['stumpwm']['build_dir'] = '/opt/stumpwm'
 default['stumpwm']['quicklisp_dir'] = '/opt/quicklisp'
 default['stumpwm']['version'] = '0.9.8'
+default['stumpwm']['packages'] = []
 
 case node['platform']
 when 'debian'
