@@ -30,10 +30,10 @@ end
 template Chef::Config[:file_cache_path] + '/sbcl.init' do
   source 'sbcl.init.erb'
   mode '0644'
-  variables 'qldir' => node['stumpwm']['quicklisp_dir']
+  variables qldir: node['stumpwm']['quicklisp_dir']
 end
 
-execute 'Install quicklisp' do
+execute 'install quicklisp' do
   cwd Chef::Config[:file_cache_path]
   command 'echo | sbcl --load ql.lisp --script sbcl.init'
   not_if Dir.exist? node['stumpwm']['quicklisp_dir']
@@ -60,10 +60,10 @@ end
 
 execute 'configure and make' do
   cwd node['stumpwm']['build_dir']
-  command 'autoconf; ./configure; make'
+  command 'autoconf && ./configure && make'
 end
 
-execute 'Install stumpwm' do
+execute 'install stumpwm' do
   cwd node['stumpwm']['build_dir']
   command 'make install'
 end

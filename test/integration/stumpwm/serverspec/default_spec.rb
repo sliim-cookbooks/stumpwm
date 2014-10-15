@@ -17,6 +17,7 @@
 #
 
 require 'serverspec'
+set :backend, :exec
 
 describe file('/opt/stumpwm') do
   it { should be_directory }

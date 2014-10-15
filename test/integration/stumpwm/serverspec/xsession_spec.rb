@@ -17,6 +17,7 @@
 #
 
 require 'serverspec'
+set :backend, :exec
 
 describe file('/usr/share/xsessions/stumpwm.desktop') do
   it { should be_file }

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Cookbook Name:: stumpwm
-# Recipe:: xsession
+# Spec:: xsession
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +16,21 @@
 # limitations under the License.
 #
 
-directory '/usr/share/xsessions' do
-  owner 'root'
-  group 'root'
-  mode '0755'
-end
+require_relative 'spec_helper'
 
-cookbook_file '/usr/share/xsessions/stumpwm.desktop' do
-  source 'stumpwm.desktop'
+describe 'stumpwm::xsession' do
+  subject { ChefSpec::Runner.new.converge(described_recipe) }
+
+  it 'does create xsessions directory' do
+    expect(subject).to create_directory('/usr/share/xsessions')
+      .with(owner: 'root',
+            group: 'root',
+            mode: '0755')
+  end
+
+  it 'does create xsession desktop file for stumpwm' do
+    # rubocop:disable Metrics/LineLength
+    expect(subject).to create_cookbook_file('/usr/share/xsessions/stumpwm.desktop')
+      .with(source: 'stumpwm.desktop')
+  end
 end
