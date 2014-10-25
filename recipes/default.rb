@@ -37,7 +37,7 @@ end
 execute 'install quicklisp' do
   cwd Chef::Config[:file_cache_path]
   command 'echo | sbcl --load ql.lisp --script sbcl.init'
-  not_if Dir.exist? node['stumpwm']['quicklisp_dir']
+  not_if { Dir.exist? node['stumpwm']['quicklisp_dir'] }
 end
 
 remotefile = 'https://github.com/stumpwm/stumpwm/archive/'
