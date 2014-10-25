@@ -10,7 +10,7 @@ group :integration do
   gem 'test-kitchen', '~> 1.2.1'
   gem 'rubocop', '~> 0.26.1'
   gem 'kitchen-vagrant'
-  gem 'serverspec'
+  gem 'kitchen-openstack'
   gem 'chefspec'
   gem 'foodcritic'
 end
