@@ -10,7 +10,7 @@ driver_config:
   key_name: "<%= ENV['KITCHEN_OS_KEY_NAME'] %>"
   private_key_path: "<%= ENV['PWD'] %>/.kitchen.key"
   floating_ip_pool: "<%= ENV['KITCHEN_OS_FLOATING_IP_POOL'] %>"
-  flavor_ref: "<%= ENV['KITCHEN_OS_FLV_1_vCPU_RAM_2G'] %>"
+  flavor_ref: "<%= ENV['KITCHEN_OS_FLV_1_vCPU_RAM_1G'] %>"
   username: stack
 
 
