@@ -19,6 +19,7 @@ Attributes
 * `default["stumpwm"]["build_dir"]` - Where stumpwm archive will be extracted and builded
 * `default["stumpwm"]["quicklisp_dir"]` - Where quicklisp will be installed
 * `default["stumpwm"]["version"]` - Stumpwm version to install
+* `default["stumpwm"]["packages"]` - Packages to install
 
 Usage
 -----
