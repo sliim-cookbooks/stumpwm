@@ -32,6 +32,10 @@ describe 'stumpwm::default' do
     expect(subject).to include_recipe('apt')
   end
 
+  it 'does include build-essential recipe' do
+    expect(subject).to include_recipe('build-essential')
+  end
+
   it 'does install emacs package' do
     expect(subject).to install_package('emacs')
   end

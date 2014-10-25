@@ -6,7 +6,8 @@ Download and install The Stump Window Manager.
 Requirements
 ------------
 #### Cookbooks
-- `apt` - `http://community.opscode.com/cookbooks/apt`
+- `apt` - `https://supermarket.getchef.com/cookbooks/apt`
+- `build-essential` - `https://supermarket.getchef.com/cookbooks/build-essential`
 
 #### Platforms
 The following platforms and versions are tested and supported using Opscode's test-kitchen.
