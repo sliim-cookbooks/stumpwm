@@ -3,6 +3,11 @@ stumpwm CHANGELOG
 
 This file is used to list changes made in each version of the stumpwm cookbook.
 
+0.1.3
+-----
+- Fixed idempotence issue
+- build-essential cookbook is now a dependency
+
 0.1.2
 -----
 - Fixed compilation error
