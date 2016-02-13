@@ -12,14 +12,17 @@ Requirements
 #### Platforms
 The following platforms and versions are tested and supported using Opscode's test-kitchen.
 - Debian wheezy
+- Debian jessie
 
 Attributes
 ----------
 #### stumwm::default
-* `default["stumpwm"]["build_dir"]` - Where stumpwm archive will be extracted and builded
-* `default["stumpwm"]["quicklisp_dir"]` - Where quicklisp will be installed
-* `default["stumpwm"]["version"]` - Stumpwm version to install
-* `default["stumpwm"]["packages"]` - Packages to install
+|  Key                       |  Type  |  Description                                                                  |
+| -------------------------- | ------ | ----------------------------------------------------------------------------- |
+| `[stumpwm][build_dir]`     | String | Where stumpwm archive will be extracted and builded (default: `/opt/stumpwm`) |
+| `[stumpwm][quicklisp_dir]` | String | Where quicklisp will be installed (default: `/opt/quicklisp`)                 |
+| `[stumpwm][version]`       | String | Stumpwm version to install (default: `0.9.8`)                                 |
+| `[stumpwm][packages]`      | Array  | Packages to install (default: `[]`)                                           |
 
 Usage
 -----
@@ -49,18 +52,15 @@ You can also use `stumpwm::xsession` to install xsession file for login managers
 ```
 
 #### Tests
-This cookbook use Strainer to define tests suites.
 
 - First, install dependencies:  
-`bundle install`  
+`bundle install`
 
-- To run all tests:  
-`bundle exec strainer test`
+- Run Checkstyle and ChefSpec:  
+`bundle exec rake`
 
-- To run integration tests:
-`bundle exec kitchen test`
-
-See `Strainerfile` for all tests suites.
+- Run Kitchen tests:  
+`bundle exec rake kitchen`  
 
 Contributing
 ------------

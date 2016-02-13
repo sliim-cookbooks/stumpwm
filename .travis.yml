@@ -1,20 +1,7 @@
 language: ruby
 rvm:
 - 2.0.0
-before_install:
-- openssl aes-256-cbc -K $encrypted_9e91e6bb2ddc_key -iv $encrypted_9e91e6bb2ddc_iv -in .kitchen.key.enc -out .kitchen.key -d
 before_script:
 - bundle exec berks install
 script:
-- bundle exec strainer test --except kitchen
-- KITCHEN_YAML=.kitchen.cloud.yml bundle exec kitchen test --destroy=always
-env:
-  global:
-  - secure: d1YIv5HOf6xP7DBxckMJLwHmfwKOGzAMyW5GsZeqTCRXYjezz/d52yLQDXqAicvxGD/mY0S1OvrqaQg6K2v332cb/vfp4Mcjz1zjQngi5IGXX43ayz0KVUKe/6f7eVxTkxsncA0u0rSy0qCtJZ0alTjUukWiPtwweY+7ct8rNj0=
-  - secure: lAq8aL4A+sRAnDNWOp4X/S+kSFIv1o+Jz9b0o7aRK29Vz688y3ofcCNPZFtWep4HQrMd6hC+mXgilcbcSHfCnbGwCstKk3jaK1ltOiWRzeoq5LuKfHdifsw4xvNlzYGQm7U44luGD7i0f6OUgVEraBkiuHSjCSSXPAX9wrDU7pM=
-  - secure: ns0hhq48C5D5dPN7Yr16bNU0nS790lDWogXkXrN2GQ42JxGlAWIigm4ERjdl08d3WMQaGHYsSLzn3QKa3Fk2578iiPr0ZtP54cRH4KjilJK5rpy4FQTIZahej3Bg/gsXvYifJhGCvVsstPO6yqYFKLGYbNK5QDWzJPOXsfiEUmI=
-  - secure: XXDfuJFcH8OiCxjxlm0toJHbVFN43zNQXYoXFj/0bQZB+TkbO8hlGyknPVrYezsjKIQBpVFYG2W6UFsIVtvipxEBizNaa/phyxREcaJGLdDhUgJnJWCCjrzK5NdDjrXjStSs9p7J5gc2mhwnwJiKwsa4ni4Ejja0Njn43+gMn8k=
-  - secure: RYVssdMwQvKkm9Tu5iP12fTYnSjwndnWAYYCDbeiX6iC5UkB1hNpwiEL7Lxqvw+zejVxvZmQG2+vZapAZNOzg7CKjxfwAxpni4pU9dFdQFOMKOF1fKtkq1ZwsRzkU5P8CXC/dagUaDnWqRLUlHDMCgnPD5mKDv/NcRyTRXSadC8=
-  - secure: ipmS0kj/sOJvS+spnJYJzTWmlm/t6hCrq7QwETB9eRc6Rm2GFw0Fj4emUew6ZKer3+WMnfgHfu9hHt8R76VH3hmMcz1RSoPd+gqS6GLc24SNHYHdONKqhQITmHe4y0doKTxcrr5VmxyWwn/A96Nf4pQiOKuEMA+VeeJVTTz9wIk=
-  - secure: XfaKboz1s0742Us/oUYye94rX/w7Fh9EKR9lRgH/6Gx8JE6TtHe0XLv6Pr78xUyyvyeg+ZUo9cZsfa7CQeEKE/32Feu1G2WMP99r24AlCHCk/WjsE8+WIWI6EwG+cUj6CHaRUTqVn4soSNvncEsV3rqbEgzI/iwN1JuABsRGgDQ=
-  - secure: i1qUtxTOUTJhlJ6dxSlDGG/MqeFND+Zrfo/BY+D7uV0gKN52pCdOyVGGEvpI0+M6aqIg4LfOnnBbTIZOnw+/Nm63T90cuA+nJqYss7+smUyxIHFz2aETLzSLBC1pUPGpNkGHCYMjsTkGYRvHDkGCL4ltyyfcpT7kktfffU5oDfI=
+- bundle exec rake

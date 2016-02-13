@@ -4,19 +4,15 @@ driver_config:
   require_chef_omnibus: true
 
 platforms:
-  - name: debian-7.2
-    driver_config:
-      box: opscode_debian-7.2.0_chef-provisionerless.box
-      box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_debian-7.2.0_chef-provisionerless.box
+  - name: debian-7.6
+  - name: debian-8.1
 
 suites:
-- name: stumpwm
-  run_list:
-  - recipe[stumpwm]
-  - recipe[stumpwm::xsession]
-  attributes: {
-    stumpwm: {
-      build_dir: "/opt/stumpwm",
-      quicklisp_dir: "/opt/quicklisp"
-    }
-  }
+  - name: stumpwm
+    run_list:
+      - recipe[stumpwm]
+      - recipe[stumpwm::xsession]
+    attributes:
+      stumpwm:
+        build_dir: "/opt/stumpwm"
+        quicklisp_dir: "/opt/quicklisp"
