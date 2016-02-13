@@ -22,7 +22,7 @@ Attributes
 | `[stumpwm][build_dir]`     | String | Where stumpwm archive will be extracted and builded (default: `/opt/stumpwm`) |
 | `[stumpwm][quicklisp_dir]` | String | Where quicklisp will be installed (default: `/opt/quicklisp`)                 |
 | `[stumpwm][version]`       | String | Stumpwm version to install (default: `0.9.8`)                                 |
-| `[stumpwm][packages]`      | Array  | Packages to install (default: `[]`)                                           |
+| `[stumpwm][packages]`      | Array  | Packages to install, depends of the platform (default: `[]`)                  |
 
 Usage
 -----

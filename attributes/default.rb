@@ -23,5 +23,5 @@ default['stumpwm']['packages'] = []
 
 case node['platform']
 when 'debian'
-  default['stumpwm']['packages'] = %w(sbcl xorg autoconf)
+  default['stumpwm']['packages'] = %w(sbcl xorg autoconf texinfo install-info)
 end
