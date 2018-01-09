@@ -25,9 +25,7 @@ version          '0.2.0'
 recipe 'default', 'Install and configure StumpWM'
 recipe 'xsession', 'Create xsession desktop file'
 
-%w(apt build-essential).each do |cb|
-  depends cb
-end
+depends 'build-essential'
 
 supports 'debian'
 

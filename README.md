@@ -6,7 +6,6 @@ Download and install The Stump Window Manager.
 Requirements
 ------------
 #### Cookbooks
-- `apt` - `https://supermarket.getchef.com/cookbooks/apt`
 - `build-essential` - `https://supermarket.getchef.com/cookbooks/build-essential`
 
 #### Platforms

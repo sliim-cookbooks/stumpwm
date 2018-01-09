@@ -14,10 +14,6 @@ describe 'stumpwm::default' do
     end.converge described_recipe
   end
 
-  it 'includes recipe[apt]' do
-    expect(subject).to include_recipe('apt')
-  end
-
   it 'includes recipe[build-essential]' do
     expect(subject).to include_recipe('build-essential')
   end
