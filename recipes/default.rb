@@ -23,7 +23,7 @@ node['stumpwm']['packages'].each do |pkg|
 end
 
 remote_file Chef::Config[:file_cache_path] + '/ql.lisp' do
-  source 'http://beta.quicklisp.org/quicklisp.lisp'
+  source 'https://beta.quicklisp.org/quicklisp.lisp'
   mode '0644'
 end
 
