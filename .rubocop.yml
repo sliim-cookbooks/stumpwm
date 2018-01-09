@@ -10,3 +10,5 @@ AllCops:
     - resources/**/*
     - spec/**/*
     - test/**/*
+  Exclude:
+    - cookbooks/**/*

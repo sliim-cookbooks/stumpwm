@@ -4,11 +4,13 @@ require_relative 'spec_helper'
 
 describe 'stumpwm::default' do
   let(:subject) do
-    ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache') do |node|
-      node.set['stumpwm']['build_dir'] = '/opt/stumpwm-build'
-      node.set['stumpwm']['quicklisp_dir'] = '/opt/ql-build'
-      node.set['stumpwm']['version'] = '6.6.6'
-      node.set['stumpwm']['packages'] = ['emacs']
+    ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache',
+                             platform: 'debian',
+                             version: '9.0') do |node|
+      node.override['stumpwm']['build_dir'] = '/opt/stumpwm-build'
+      node.override['stumpwm']['quicklisp_dir'] = '/opt/ql-build'
+      node.override['stumpwm']['version'] = '6.6.6'
+      node.override['stumpwm']['packages'] = ['emacs']
     end.converge described_recipe
   end
 
