@@ -33,37 +33,41 @@ template Chef::Config[:file_cache_path] + '/sbcl.init' do
   variables qldir: node['stumpwm']['quicklisp_dir']
 end
 
-execute 'install quicklisp' do
+[node['stumpwm']['build_dir'], node['stumpwm']['quicklisp_dir']].each do |builddir|
+  directory builddir do
+    owner node['stumpwm']['user']
+    recursive true
+    mode '0755'
+  end
+end
+
+execute 'install-quicklisp' do
   cwd Chef::Config[:file_cache_path]
   command 'echo | sbcl --load ql.lisp --script sbcl.init'
+  user node['stumpwm']['user']
   not_if { Dir.exist? node['stumpwm']['quicklisp_dir'] }
 end
 
-remotefile = 'https://github.com/stumpwm/stumpwm/archive/'
-remotefile << node['stumpwm']['version'] << '.tar.gz'
-localfile = Chef::Config[:file_cache_path] + '/stumpwm.tar.gz'
-
-remote_file localfile do
-  source remotefile
-  mode '0644'
-end
-
-directory node['stumpwm']['build_dir'] do
-  mode '0755'
-  recursive true
-end
-
-execute 'untar' do
-  cwd node['stumpwm']['build_dir']
-  command 'tar --strip-components 1 -xzf ' + localfile
-end
-
-execute 'configure and make' do
+execute 'configure-make' do
   cwd node['stumpwm']['build_dir']
   command 'autoconf && ./configure && make'
+  environment SBCL_HOME: '/usr/lib/sbcl'
+  user node['stumpwm']['user']
+  action :nothing
 end
 
-execute 'install stumpwm' do
+execute 'make-install' do
   cwd node['stumpwm']['build_dir']
   command 'make install'
+  user 'root'
+  action :nothing
+end
+
+git node['stumpwm']['build_dir'] do
+  user node['stumpwm']['user']
+  repository node['stumpwm']['repository']
+  reference node['stumpwm']['version']
+  notifies :run, 'execute[configure-make]', :immediately
+  notifies :run, 'execute[make-install]', :immediately
+  action :sync
 end

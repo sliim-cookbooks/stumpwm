@@ -2,5 +2,5 @@
 Encoding=UTF-8
 Type=XSession
 Exec=/usr/local/bin/stumpwm
-Name=Stumpwm
+Name=StumpWM
 Comment=The Stump Window Manager

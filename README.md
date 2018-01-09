@@ -10,17 +10,19 @@ Requirements
 
 #### Platforms
 The following platforms and versions are tested and supported using Opscode's test-kitchen.
-- Debian wheezy
-- Debian jessie
+- Debian 8
+- Debian 9
 
 Attributes
 ----------
 #### stumwm::default
 |  Key                       |  Type  |  Description                                                                  |
 | -------------------------- | ------ | ----------------------------------------------------------------------------- |
+| `[stumpwm][user]`          | String | User used to build stumpwm project (default: `root`)                          |
 | `[stumpwm][build_dir]`     | String | Where stumpwm archive will be extracted and builded (default: `/opt/stumpwm`) |
 | `[stumpwm][quicklisp_dir]` | String | Where quicklisp will be installed (default: `/opt/quicklisp`)                 |
-| `[stumpwm][version]`       | String | Stumpwm version to install (default: `0.9.8`)                                 |
+| `[stumpwm][repository]`    | String | Stumpwm git repository (default: `https://github.com/stumpwm/stumpwm.git`)    |
+| `[stumpwm][version]`       | String | Stumpwm version to install (default: `1.0.0`)                                 |
 | `[stumpwm][packages]`      | Array  | Packages to install, depends of the platform (default: `[]`)                  |
 
 Usage

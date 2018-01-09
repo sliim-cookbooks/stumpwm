@@ -11,6 +11,7 @@ describe 'stumpwm::default' do
       node.override['stumpwm']['quicklisp_dir'] = '/opt/ql-build'
       node.override['stumpwm']['version'] = '6.6.6'
       node.override['stumpwm']['packages'] = ['emacs']
+      node.override['stumpwm']['user'] = 'builduser'
     end.converge described_recipe
   end
 
@@ -24,7 +25,7 @@ describe 'stumpwm::default' do
 
   it 'creates remote_file[/var/chef/cache/ql.lisp]' do
     expect(subject).to create_remote_file('/var/chef/cache/ql.lisp')
-      .with(source: 'http://beta.quicklisp.org/quicklisp.lisp',
+      .with(source: 'https://beta.quicklisp.org/quicklisp.lisp',
             mode: '0644')
   end
 
@@ -37,42 +38,31 @@ describe 'stumpwm::default' do
       .with_content(%r{\(quicklisp-quickstart:install :path "/opt/ql-build"\)})
   end
 
-  it 'runs execute[install quicklisp]' do
-    expect(subject).to run_execute('install quicklisp')
-      .with(cwd: '/var/chef/cache',
-            command: 'echo | sbcl --load ql.lisp --script sbcl.init')
-  end
-
-  it 'creates remote_file[/var/chef/cache/stumpwm.tar.gz]' do
-    expect(subject).to create_remote_file('/var/chef/cache/stumpwm.tar.gz')
-      .with(source: 'https://github.com/stumpwm/stumpwm/archive/6.6.6.tar.gz',
-            mode: '0644')
-  end
-
   it 'creates directory[/opt/stumpwm-build]' do
     expect(subject).to create_directory('/opt/stumpwm-build')
       .with(mode: '0755',
-            recursive: true)
+            recursive: true,
+            owner: 'builduser')
   end
 
-  it 'runs execute[untar]' do
-    expect(subject).to run_execute('untar')
-      .with(cwd: '/opt/stumpwm-build',
-            command: format('%s %s %s',
-                            'tar',
-                            '--strip-components 1 -xzf',
-                            '/var/chef/cache/stumpwm.tar.gz'))
+  it 'creates directory[/opt/ql-build]' do
+    expect(subject).to create_directory('/opt/ql-build')
+      .with(mode: '0755',
+            recursive: true,
+            owner: 'builduser')
   end
 
-  it 'runs execute[configure and make]' do
-    expect(subject).to run_execute('configure and make')
-      .with(cwd: '/opt/stumpwm-build',
-            command: 'autoconf && ./configure && make')
+  it 'runs execute[install-quicklisp]' do
+    expect(subject).to run_execute('install-quicklisp')
+      .with(cwd: '/var/chef/cache',
+            command: 'echo | sbcl --load ql.lisp --script sbcl.init',
+            user: 'builduser')
   end
 
-  it 'runs execute[install stumpwm]' do
-    expect(subject).to run_execute('install stumpwm')
-      .with(cwd: '/opt/stumpwm-build',
-            command: 'make install')
+  it 'syncs git[/opt/stumpwm-build]' do
+    expect(subject).to sync_git('/opt/stumpwm-build')
+      .with(repository: 'https://github.com/stumpwm/stumpwm.git',
+            reference: '6.6.6',
+            user: 'builduser')
   end
 end
