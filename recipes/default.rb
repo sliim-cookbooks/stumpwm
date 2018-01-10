@@ -22,36 +22,18 @@ node['stumpwm']['packages'].each do |pkg|
   package pkg
 end
 
-remote_file Chef::Config[:file_cache_path] + '/ql.lisp' do
-  source 'https://beta.quicklisp.org/quicklisp.lisp'
-  mode '0644'
-end
-
-template Chef::Config[:file_cache_path] + '/sbcl.init' do
-  source 'sbcl.init.erb'
-  mode '0644'
-  variables qldir: node['stumpwm']['quicklisp_dir']
-end
-
-[node['stumpwm']['build_dir'], node['stumpwm']['quicklisp_dir']].each do |builddir|
-  directory builddir do
-    owner node['stumpwm']['user']
-    recursive true
-    mode '0755'
-  end
-end
-
 execute 'install-quicklisp' do
-  cwd Chef::Config[:file_cache_path]
-  command 'echo | sbcl --load ql.lisp --script sbcl.init'
-  user node['stumpwm']['user']
-  not_if { Dir.exist? node['stumpwm']['quicklisp_dir'] }
+  command "su - #{node['stumpwm']['user']} -c 'echo |sbcl "\
+          "--load #{Chef::Config[:file_cache_path]}/ql.lisp "\
+          "--script #{Chef::Config[:file_cache_path]}/sbcl.init'"
+  action :nothing
 end
 
 execute 'configure-make' do
   cwd node['stumpwm']['build_dir']
   command 'autoconf && ./configure && make'
-  environment SBCL_HOME: '/usr/lib/sbcl'
+  environment SBCL_HOME: '/usr/lib/sbcl',
+              XDG_CACHE_HOME: "#{Chef::Config[:file_cache_path]}/common-lisp/#{node['stumpwm']['user']}"
   user node['stumpwm']['user']
   action :nothing
 end
@@ -61,6 +43,28 @@ execute 'make-install' do
   command 'make install'
   user 'root'
   action :nothing
+end
+
+[node['stumpwm']['build_dir'],
+ node['stumpwm']['quicklisp_dir'],
+ "#{Chef::Config[:file_cache_path]}/common-lisp/#{node['stumpwm']['user']}"].each do |dir|
+  directory dir do
+    owner node['stumpwm']['user']
+    recursive true
+    mode '0755'
+  end
+end
+
+remote_file "#{Chef::Config[:file_cache_path]}/ql.lisp" do
+  source 'https://beta.quicklisp.org/quicklisp.lisp'
+  mode '0644'
+end
+
+template "#{Chef::Config[:file_cache_path]}/sbcl.init" do
+  source 'sbcl.init.erb'
+  mode '0644'
+  variables qldir: node['stumpwm']['quicklisp_dir']
+  notifies :run, 'execute[install-quicklisp]', :immediately
 end
 
 git node['stumpwm']['build_dir'] do

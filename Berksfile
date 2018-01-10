@@ -4,4 +4,5 @@ metadata
 
 group :integration do
   cookbook 'apt'
+  cookbook 'git'
 end

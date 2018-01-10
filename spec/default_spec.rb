@@ -52,13 +52,6 @@ describe 'stumpwm::default' do
             owner: 'builduser')
   end
 
-  it 'runs execute[install-quicklisp]' do
-    expect(subject).to run_execute('install-quicklisp')
-      .with(cwd: '/var/chef/cache',
-            command: 'echo | sbcl --load ql.lisp --script sbcl.init',
-            user: 'builduser')
-  end
-
   it 'syncs git[/opt/stumpwm-build]' do
     expect(subject).to sync_git('/opt/stumpwm-build')
       .with(repository: 'https://github.com/stumpwm/stumpwm.git',

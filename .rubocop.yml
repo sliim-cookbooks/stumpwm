@@ -12,3 +12,4 @@ AllCops:
     - test/**/*
   Exclude:
     - cookbooks/**/*
+    - vendor/**/*

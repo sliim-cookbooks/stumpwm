@@ -11,9 +11,11 @@ suites:
   - name: default
     run_list:
       - recipe[apt]
+      - recipe[git]
       - recipe[stumpwm]
       - recipe[stumpwm::xsession]
     attributes:
       stumpwm:
-        build_dir: "/opt/stumpwm"
-        quicklisp_dir: "/opt/quicklisp"
+        build_dir: /opt/stumpwm
+        quicklisp_dir: /opt/quicklisp
+        user: kitchen

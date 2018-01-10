@@ -2,11 +2,12 @@
 
 describe file('/opt/stumpwm') do
   it { should be_directory }
-  it { should be_mode 755 }
+  it { should be_mode 0755 }
 end
 
 describe file('/opt/quicklisp') do
   it { should be_directory }
+  it { should be_mode 0755 }
 end
 
 describe file('/opt/quicklisp/setup.lisp') do
