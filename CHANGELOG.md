@@ -3,6 +3,12 @@ stumpwm CHANGELOG
 
 This file is used to list changes made in each version of the stumpwm cookbook.
 
+0.3.0
+-----
+- Removed `apt` cookbook dependency
+- Download quicklisp over https
+- Build StumpWM from git repository
+
 0.2.0
 -----
 - Code cleanup
