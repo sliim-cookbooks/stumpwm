@@ -17,16 +17,10 @@
 #
 
 include_recipe 'build-essential'
+include_recipe 'stumpwm::quicklisp'
 
 node['stumpwm']['packages'].each do |pkg|
   package pkg
-end
-
-execute 'install-quicklisp' do
-  command "su - #{node['stumpwm']['user']} -c 'echo |sbcl "\
-          "--load #{Chef::Config[:file_cache_path]}/ql.lisp "\
-          "--script #{Chef::Config[:file_cache_path]}/sbcl.init'"
-  action :nothing
 end
 
 execute 'configure-make' do
@@ -45,26 +39,10 @@ execute 'make-install' do
   action :nothing
 end
 
-[node['stumpwm']['build_dir'],
- node['stumpwm']['quicklisp_dir'],
- "#{Chef::Config[:file_cache_path]}/common-lisp/#{node['stumpwm']['user']}"].each do |dir|
-  directory dir do
-    owner node['stumpwm']['user']
-    recursive true
-    mode '0755'
-  end
-end
-
-remote_file "#{Chef::Config[:file_cache_path]}/ql.lisp" do
-  source 'https://beta.quicklisp.org/quicklisp.lisp'
-  mode '0644'
-end
-
-template "#{Chef::Config[:file_cache_path]}/sbcl.init" do
-  source 'sbcl.init.erb'
-  mode '0644'
-  variables qldir: node['stumpwm']['quicklisp_dir']
-  notifies :run, 'execute[install-quicklisp]', :immediately
+directory node['stumpwm']['build_dir'] do
+  owner node['stumpwm']['user']
+  recursive true
+  mode '0755'
 end
 
 git node['stumpwm']['build_dir'] do

@@ -39,6 +39,20 @@ Just include `stumpwm` in your node's `run_list`:
 }
 ```
 
+#### stumpwm::quicklisp
+Just include `stumpwm::quicklisp` in your node's `run_list`:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[stumpwm::quicklisp]"
+  ]
+}
+```
+
+Note: This recipe is already included by `stumpwm::default`.
+
 #### stumpwm::xsession
 You can also use `stumpwm::xsession` to install xsession file for login managers (GDM, Slim etc..)
 

@@ -23,6 +23,7 @@ chef_version '>= 12.5' if respond_to?(:chef_version)
 version          '0.3.0'
 
 recipe 'default', 'Install and configure StumpWM'
+recipe 'quicklisp', 'Install Quicklisp'
 recipe 'xsession', 'Create xsession desktop file'
 
 depends 'build-essential'

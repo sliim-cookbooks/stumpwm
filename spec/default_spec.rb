@@ -15,7 +15,15 @@ describe 'stumpwm::default' do
     end.converge described_recipe
   end
 
+  before do
+    stub_command('test -f /var/chef/cache/ql.lisp').and_return(false)
+  end
+
   it 'includes recipe[build-essential]' do
+    expect(subject).to include_recipe('build-essential')
+  end
+
+  it 'includes recipe[stumpwm::quicklisp]' do
     expect(subject).to include_recipe('build-essential')
   end
 
@@ -23,30 +31,8 @@ describe 'stumpwm::default' do
     expect(subject).to install_package('emacs')
   end
 
-  it 'creates remote_file[/var/chef/cache/ql.lisp]' do
-    expect(subject).to create_remote_file('/var/chef/cache/ql.lisp')
-      .with(source: 'https://beta.quicklisp.org/quicklisp.lisp',
-            mode: '0644')
-  end
-
-  it 'creates template[/var/chef/cache/sbcl.init]' do
-    expect(subject).to create_template('/var/chef/cache/sbcl.init')
-      .with(source: 'sbcl.init.erb',
-            mode: '0644')
-
-    expect(subject).to render_file('/var/chef/cache/sbcl.init')
-      .with_content(%r{\(quicklisp-quickstart:install :path "/opt/ql-build"\)})
-  end
-
   it 'creates directory[/opt/stumpwm-build]' do
     expect(subject).to create_directory('/opt/stumpwm-build')
-      .with(mode: '0755',
-            recursive: true,
-            owner: 'builduser')
-  end
-
-  it 'creates directory[/opt/ql-build]' do
-    expect(subject).to create_directory('/opt/ql-build')
       .with(mode: '0755',
             recursive: true,
             owner: 'builduser')
