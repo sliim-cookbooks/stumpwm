@@ -17,11 +17,12 @@
 #
 
 include_recipe 'build-essential'
-include_recipe 'stumpwm::quicklisp'
 
 node['stumpwm']['packages'].each do |pkg|
   package pkg
 end
+
+include_recipe 'stumpwm::quicklisp'
 
 execute 'configure-make' do
   cwd node['stumpwm']['build_dir']

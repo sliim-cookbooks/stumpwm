@@ -23,12 +23,12 @@ describe 'stumpwm::default' do
     expect(subject).to include_recipe('build-essential')
   end
 
-  it 'includes recipe[stumpwm::quicklisp]' do
-    expect(subject).to include_recipe('build-essential')
-  end
-
   it 'installs package[emacs]' do
     expect(subject).to install_package('emacs')
+  end
+
+  it 'includes recipe[stumpwm::quicklisp]' do
+    expect(subject).to include_recipe('build-essential')
   end
 
   it 'creates directory[/opt/stumpwm-build]' do
