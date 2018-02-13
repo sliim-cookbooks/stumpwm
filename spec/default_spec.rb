@@ -4,9 +4,7 @@ require_relative 'spec_helper'
 
 describe 'stumpwm::default' do
   let(:subject) do
-    ChefSpec::SoloRunner.new(file_cache_path: '/var/chef/cache',
-                             platform: 'debian',
-                             version: '9.0') do |node|
+    ChefSpec::SoloRunner.new(platform: 'debian', version: '9.0') do |node|
       node.override['stumpwm']['build_dir'] = '/opt/stumpwm-build'
       node.override['stumpwm']['quicklisp_dir'] = '/opt/ql-build'
       node.override['stumpwm']['version'] = '6.6.6'
@@ -16,7 +14,7 @@ describe 'stumpwm::default' do
   end
 
   before do
-    stub_command('test -f /var/chef/cache/ql.lisp').and_return(false)
+    stub_command('test -f /opt/ql-build/ql.lisp').and_return(false)
   end
 
   it 'includes recipe[build-essential]' do

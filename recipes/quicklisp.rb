@@ -18,27 +18,24 @@
 
 execute 'install-quicklisp' do
   command "su - #{node['stumpwm']['user']} -c 'echo |sbcl "\
-          "--load #{Chef::Config[:file_cache_path]}/ql.lisp "\
-          "--script #{Chef::Config[:file_cache_path]}/sbcl.init'"
+          "--load #{node['stumpwm']['quicklisp_dir']}/ql.lisp "\
+          "--script #{node['stumpwm']['quicklisp_dir']}/sbcl.init'"
   action :nothing
 end
 
-[node['stumpwm']['quicklisp_dir'],
- "#{Chef::Config[:file_cache_path]}/common-lisp/#{node['stumpwm']['user']}"].each do |dir|
-  directory dir do
-    owner node['stumpwm']['user']
-    recursive true
-    mode '0755'
-  end
+directory "#{node['stumpwm']['quicklisp_dir']}/common-lisp/#{node['stumpwm']['user']}" do
+  owner node['stumpwm']['user']
+  recursive true
+  mode '0755'
 end
 
-remote_file "#{Chef::Config[:file_cache_path]}/ql.lisp" do
+remote_file "#{node['stumpwm']['quicklisp_dir']}/ql.lisp" do
   source 'https://beta.quicklisp.org/quicklisp.lisp'
   mode '0644'
-  not_if "test -f #{Chef::Config[:file_cache_path]}/ql.lisp"
+  not_if "test -f #{node['stumpwm']['quicklisp_dir']}/ql.lisp"
 end
 
-template "#{Chef::Config[:file_cache_path]}/sbcl.init" do
+template "#{node['stumpwm']['quicklisp_dir']}/sbcl.init" do
   source 'sbcl.init.erb'
   mode '0644'
   variables qldir: node['stumpwm']['quicklisp_dir']
