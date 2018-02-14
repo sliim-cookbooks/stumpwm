@@ -23,10 +23,13 @@ execute 'install-quicklisp' do
   action :nothing
 end
 
-directory "#{node['stumpwm']['quicklisp_dir']}/common-lisp/#{node['stumpwm']['user']}" do
-  owner node['stumpwm']['user']
-  recursive true
-  mode '0755'
+quicklisp_dir = node['stumpwm']['quicklisp_dir']
+[quicklisp_dir, "#{quicklisp_dir}/common-lisp/#{node['stumpwm']['user']}"].each do |dir|
+  directory dir do
+    owner node['stumpwm']['user']
+    recursive true
+    mode '0755'
+  end
 end
 
 remote_file "#{node['stumpwm']['quicklisp_dir']}/ql.lisp" do

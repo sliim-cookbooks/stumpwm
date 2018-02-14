@@ -14,6 +14,13 @@ describe 'stumpwm::quicklisp' do
     stub_command('test -f /opt/ql-build/ql.lisp').and_return(false)
   end
 
+  it 'creates directory[/opt/ql-build]' do
+    expect(subject).to create_directory('/opt/ql-build')
+      .with(mode: '0755',
+            recursive: true,
+            owner: 'builduser')
+  end
+
   it 'creates directory[/opt/ql-build/common-lisp/builduser]' do
     expect(subject).to create_directory('/opt/ql-build/common-lisp/builduser')
       .with(mode: '0755',
