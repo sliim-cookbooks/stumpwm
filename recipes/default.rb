@@ -28,7 +28,7 @@ execute 'configure-make' do
   cwd node['stumpwm']['build_dir']
   command 'autoconf && ./configure && make'
   environment SBCL_HOME: '/usr/lib/sbcl',
-              XDG_CACHE_HOME: "#{Chef::Config[:file_cache_path]}/common-lisp/#{node['stumpwm']['user']}"
+              XDG_CACHE_HOME: "#{node['stumpwm']['quicklisp_dir']}/common-lisp/#{node['stumpwm']['user']}"
   user node['stumpwm']['user']
   action :nothing
 end
