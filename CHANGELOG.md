@@ -3,6 +3,12 @@ stumpwm CHANGELOG
 
 This file is used to list changes made in each version of the stumpwm cookbook.
 
+0.4.0
+-----
+- Added stumpwm::quicklisp recipe and improved quicklisp install
+- Fixed XDG_CACHE_HOME envvar when building stumpwm
+- Added common lisp packages to packages list to install in default attributes
+
 0.3.0
 -----
 - Removed `apt` cookbook dependency
