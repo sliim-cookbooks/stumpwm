@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-include_recipe 'build-essential'
+build_essential 'stumpwm'
 
 node['stumpwm']['packages'].each do |pkg|
   package pkg

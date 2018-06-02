@@ -17,16 +17,8 @@ describe 'stumpwm::default' do
     stub_command('test -f /opt/ql-build/ql.lisp').and_return(false)
   end
 
-  it 'includes recipe[build-essential]' do
-    expect(subject).to include_recipe('build-essential')
-  end
-
   it 'installs package[emacs]' do
     expect(subject).to install_package('emacs')
-  end
-
-  it 'includes recipe[stumpwm::quicklisp]' do
-    expect(subject).to include_recipe('build-essential')
   end
 
   it 'creates directory[/opt/stumpwm-build]' do
