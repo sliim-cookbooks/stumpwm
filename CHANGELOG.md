@@ -3,6 +3,10 @@ stumpwm CHANGELOG
 
 This file is used to list changes made in each version of the stumpwm cookbook.
 
+0.5.0
+-----
+- Added support for Ubuntu 18.04
+
 0.4.0
 -----
 - Added stumpwm::quicklisp recipe and improved quicklisp install
