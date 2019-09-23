@@ -13,3 +13,6 @@ AllCops:
   Exclude:
     - cookbooks/**/*
     - vendor/**/*
+
+ChefModernize/UnnecessaryDependsChef14:
+  Enabled: false

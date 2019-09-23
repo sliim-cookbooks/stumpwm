@@ -18,20 +18,13 @@ maintainer       'Sliim'
 maintainer_email 'sliim@mailoo.org'
 license          'Apache-2.0'
 description      'Installs/Configures Stumpwm'
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-chef_version '>= 12.5' if respond_to?(:chef_version)
+chef_version '>= 12.5'
 version          '0.4.0'
-
-recipe 'default', 'Install and configure StumpWM'
-recipe 'quicklisp', 'Install Quicklisp'
-recipe 'xsession', 'Create xsession desktop file'
 
 depends 'build-essential'
 
 supports 'debian'
 supports 'ubuntu'
 
-source_url 'https://github.com/sliim-cookbooks/stumpwm' if
-  respond_to?(:source_url)
-issues_url 'https://github.com/sliim-cookbooks/stumpwm/issues' if
-  respond_to?(:issues_url)
+source_url 'https://github.com/sliim-cookbooks/stumpwm'
+issues_url 'https://github.com/sliim-cookbooks/stumpwm/issues'
