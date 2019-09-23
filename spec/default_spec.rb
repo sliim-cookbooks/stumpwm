@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 
 describe 'stumpwm::default' do
   let(:subject) do
-    ChefSpec::SoloRunner.new(platform: 'debian', version: '9.0') do |node|
+    ChefSpec::SoloRunner.new do |node|
       node.override['stumpwm']['build_dir'] = '/opt/stumpwm-build'
       node.override['stumpwm']['quicklisp_dir'] = '/opt/ql-build'
       node.override['stumpwm']['version'] = '6.6.6'

@@ -4,9 +4,7 @@ require_relative 'spec_helper'
 
 describe 'stumpwm::xsession' do
   let(:subject) do
-    ChefSpec::SoloRunner.new(
-      platform: 'debian',
-      version: '9.0').converge described_recipe
+    ChefSpec::SoloRunner.new.converge described_recipe
   end
 
   it 'creates directory[/usr/share/xsessions]' do

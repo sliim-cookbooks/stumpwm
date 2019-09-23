@@ -4,7 +4,7 @@ require_relative 'spec_helper'
 
 describe 'stumpwm::quicklisp' do
   let(:subject) do
-    ChefSpec::SoloRunner.new(platform: 'debian', version: '9.0') do |node|
+    ChefSpec::SoloRunner.new do |node|
       node.override['stumpwm']['quicklisp_dir'] = '/opt/ql-build'
       node.override['stumpwm']['user'] = 'builduser'
     end.converge described_recipe
