@@ -29,6 +29,7 @@ recipe 'xsession', 'Create xsession desktop file'
 depends 'build-essential'
 
 supports 'debian'
+supports 'ubuntu'
 
 source_url 'https://github.com/sliim-cookbooks/stumpwm' if
   respond_to?(:source_url)

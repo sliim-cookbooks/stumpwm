@@ -4,8 +4,9 @@ driver_config:
   require_chef_omnibus: true
 
 platforms:
-  - name: debian-7.6
   - name: debian-8.1
+  - name: debian-9.5
+  - name: ubuntu-18.04
 
 suites:
   - name: default
