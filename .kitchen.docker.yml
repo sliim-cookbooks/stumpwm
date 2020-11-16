@@ -26,5 +26,6 @@ suites:
     attributes:
       stumpwm:
         build_dir: /opt/stumpwm
-        quicklisp_dir: /opt/quicklisp
         user: kitchen
+        quicklisp:
+          install_dir: /opt/quicklisp

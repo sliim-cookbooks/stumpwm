@@ -17,11 +17,13 @@
 #
 
 default['stumpwm']['build_dir'] = '/opt/stumpwm'
-default['stumpwm']['quicklisp_dir'] = '/opt/quicklisp'
 default['stumpwm']['repository'] = 'https://github.com/stumpwm/stumpwm.git'
 default['stumpwm']['version'] = '1.0.0'
 default['stumpwm']['user'] = 'root'
 default['stumpwm']['packages'] = []
+
+default['stumpwm']['quicklisp']['install_dir'] = '/opt/quicklisp'
+default['stumpwm']['quicklisp']['loads'] = %w(clx cl-ppcre alexandria)
 
 case node['platform']
 when 'debian', 'ubuntu'

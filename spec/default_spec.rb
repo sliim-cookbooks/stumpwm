@@ -6,7 +6,7 @@ describe 'stumpwm::default' do
   let(:subject) do
     ChefSpec::SoloRunner.new do |node|
       node.override['stumpwm']['build_dir'] = '/opt/stumpwm-build'
-      node.override['stumpwm']['quicklisp_dir'] = '/opt/ql-build'
+      node.override['stumpwm']['quicklisp']['install_dir'] = '/opt/ql-build'
       node.override['stumpwm']['version'] = '6.6.6'
       node.override['stumpwm']['packages'] = ['emacs']
       node.override['stumpwm']['user'] = 'builduser'

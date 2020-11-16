@@ -17,14 +17,15 @@ The following platforms and versions are tested and supported using Opscode's te
 Attributes
 ----------
 #### stumwm::default
-|  Key                       |  Type  |  Description                                                                  |
-| -------------------------- | ------ | ----------------------------------------------------------------------------- |
-| `[stumpwm][user]`          | String | User used to build stumpwm project (default: `root`)                          |
-| `[stumpwm][build_dir]`     | String | Where stumpwm archive will be extracted and builded (default: `/opt/stumpwm`) |
-| `[stumpwm][quicklisp_dir]` | String | Where quicklisp will be installed (default: `/opt/quicklisp`)                 |
-| `[stumpwm][repository]`    | String | Stumpwm git repository (default: `https://github.com/stumpwm/stumpwm.git`)    |
-| `[stumpwm][version]`       | String | Stumpwm version to install (default: `1.0.0`)                                 |
-| `[stumpwm][packages]`      | Array  | Packages to install, depends of the platform (default: `[]`)                  |
+| Key                                 | Type   | Description                                                                                  |
+| --------------------------          | ------ | -------------------------------------------------------------------------------------------- |
+| `[stumpwm][user]`                   | String | User used to build stumpwm project (default: `root`)                                         |
+| `[stumpwm][build_dir]`              | String | Where stumpwm archive will be extracted and builded (default: `/opt/stumpwm`)                |
+| `[stumpwm][repository]`             | String | Stumpwm git repository (default: `https://github.com/stumpwm/stumpwm.git`)                   |
+| `[stumpwm][version]`                | String | Stumpwm version to install (default: `1.0.0`)                                                |
+| `[stumpwm][packages]`               | Array  | Packages to install, depends of the platform (default: `[]`)                                 |
+| `[stumpwm][quicklisp][install_dir]` | String | Where quicklisp will be installed (default: `/opt/quicklisp`)                                |
+| `[stumpwm][quicklisp][loads]`       | Array  | List of packages to load when initializing sbcl (default: `[clx, cl-ppcre, alexandria`) |
 
 Usage
 -----

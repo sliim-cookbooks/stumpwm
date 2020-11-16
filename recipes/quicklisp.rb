@@ -18,12 +18,12 @@
 
 execute 'install-quicklisp' do
   command "su - #{node['stumpwm']['user']} -c 'echo |sbcl "\
-          "--load #{node['stumpwm']['quicklisp_dir']}/ql.lisp "\
-          "--script #{node['stumpwm']['quicklisp_dir']}/sbcl.init'"
+          "--load #{node['stumpwm']['quicklisp']['install_dir']}/ql.lisp "\
+          "--script #{node['stumpwm']['quicklisp']['install_dir']}/sbcl.init'"
   action :nothing
 end
 
-quicklisp_dir = node['stumpwm']['quicklisp_dir']
+quicklisp_dir = node['stumpwm']['quicklisp']['install_dir']
 [quicklisp_dir, "#{quicklisp_dir}/common-lisp/#{node['stumpwm']['user']}"].each do |dir|
   directory dir do
     owner node['stumpwm']['user']
@@ -32,15 +32,16 @@ quicklisp_dir = node['stumpwm']['quicklisp_dir']
   end
 end
 
-remote_file "#{node['stumpwm']['quicklisp_dir']}/ql.lisp" do
+remote_file "#{node['stumpwm']['quicklisp']['install_dir']}/ql.lisp" do
   source 'https://beta.quicklisp.org/quicklisp.lisp'
   mode '0644'
-  not_if "test -f #{node['stumpwm']['quicklisp_dir']}/ql.lisp"
+  not_if "test -f #{node['stumpwm']['quicklisp']['install_dir']}/ql.lisp"
 end
 
-template "#{node['stumpwm']['quicklisp_dir']}/sbcl.init" do
+template "#{node['stumpwm']['quicklisp']['install_dir']}/sbcl.init" do
   source 'sbcl.init.erb'
   mode '0644'
-  variables qldir: node['stumpwm']['quicklisp_dir']
+  variables qldir: node['stumpwm']['quicklisp']['install_dir'],
+            loads: node['stumpwm']['quicklisp']['loads']
   notifies :run, 'execute[install-quicklisp]', :immediately
 end

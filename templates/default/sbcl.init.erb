@@ -1,6 +1,5 @@
 (quicklisp-quickstart:install :path "<%= @qldir %>")
 (ql:add-to-init-file t)
-(ql:quickload "clx")
-;; (ql:quickload "clx-truetype")
-(ql:quickload "cl-ppcre")
-(ql:quickload "alexandria")
+<% @loads.each do |load| %>
+(ql:quickload "<%= load %>")
+<% end %>

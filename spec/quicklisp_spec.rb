@@ -5,7 +5,8 @@ require_relative 'spec_helper'
 describe 'stumpwm::quicklisp' do
   let(:subject) do
     ChefSpec::SoloRunner.new do |node|
-      node.override['stumpwm']['quicklisp_dir'] = '/opt/ql-build'
+      node.override['stumpwm']['quicklisp']['install_dir'] = '/opt/ql-build'
+      node.override['stumpwm']['quicklisp']['loads'] = %w(foo bar baz)
       node.override['stumpwm']['user'] = 'builduser'
     end.converge described_recipe
   end
@@ -39,7 +40,12 @@ describe 'stumpwm::quicklisp' do
       .with(source: 'sbcl.init.erb',
             mode: '0644')
 
-    expect(subject).to render_file('/opt/ql-build/sbcl.init')
-      .with_content(%r{\(quicklisp-quickstart:install :path "/opt/ql-build"\)})
+    [%r{\(quicklisp-quickstart:install :path "/opt/ql-build"\)},
+     %r{\(ql:quickload "foo"\)},
+     %r{\(ql:quickload "bar"\)},
+     %r{\(ql:quickload "baz"\)}].each do |line|
+      expect(subject).to render_file('/opt/ql-build/sbcl.init')
+        .with_content(line)
+    end
   end
 end
