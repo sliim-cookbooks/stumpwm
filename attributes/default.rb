@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-#
 # Cookbook:: stumpwm
 # Attributes:: default
 #
@@ -25,7 +23,6 @@ default['stumpwm']['packages'] = []
 default['stumpwm']['quicklisp']['install_dir'] = '/opt/quicklisp'
 default['stumpwm']['quicklisp']['loads'] = %w(clx cl-ppcre alexandria)
 
-case node['platform']
-when 'debian', 'ubuntu'
+if platform?('debian', 'ubuntu')
   default['stumpwm']['packages'] = %w(sbcl xorg autoconf texinfo install-info cl-asdf cl-clx-sbcl cl-ppcre)
 end

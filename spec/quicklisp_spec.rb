@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 require_relative 'spec_helper'
 
 describe 'stumpwm::quicklisp' do
@@ -41,9 +39,9 @@ describe 'stumpwm::quicklisp' do
             mode: '0644')
 
     [%r{\(quicklisp-quickstart:install :path "/opt/ql-build"\)},
-     %r{\(ql:quickload "foo"\)},
-     %r{\(ql:quickload "bar"\)},
-     %r{\(ql:quickload "baz"\)}].each do |line|
+     /(ql:quickload "foo")/,
+     /(ql:quickload "bar")/,
+     /(ql:quickload "baz")/].each do |line|
       expect(subject).to render_file('/opt/ql-build/sbcl.init')
         .with_content(line)
     end

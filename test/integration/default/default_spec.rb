@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 describe file('/opt/stumpwm') do
   it { should be_directory }
   it { should be_mode 0755 }
