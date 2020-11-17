@@ -22,24 +22,17 @@ end
 
 include_recipe 'stumpwm::quicklisp'
 
-buildenv = {
-  SBCL_HOME: '/usr/lib/sbcl',
-  XDG_CACHE_HOME: "#{node['stumpwm']['quicklisp']['install_dir']}/common-lisp/#{node['stumpwm']['user']}",
-}
-
 execute 'configure' do
   cwd node['stumpwm']['build_dir']
   command './autogen.sh && ./configure'
-  environment buildenv
+  environment SBCL_HOME: '/usr/lib/sbcl',
+              XDG_CACHE_HOME: "#{node['stumpwm']['quicklisp']['install_dir']}/common-lisp/#{node['stumpwm']['user']}"
   user node['stumpwm']['user']
   action :nothing
 end
 
-bash 'make' do
-  cwd node['stumpwm']['build_dir']
-  code 'make'
-  environment buildenv
-  user node['stumpwm']['user']
+execute 'make' do
+  command "su - #{node['stumpwm']['user']} -c 'cd #{node['stumpwm']['build_dir']} ;make'"
   action :nothing
 end
 
@@ -61,7 +54,7 @@ git node['stumpwm']['build_dir'] do
   repository node['stumpwm']['repository']
   reference node['stumpwm']['version']
   notifies :run, 'execute[configure]', :immediately
-  notifies :run, 'bash[make]', :immediately
+  notifies :run, 'execute[make]', :immediately
   notifies :run, 'execute[install]', :immediately
   action :sync
 end
