@@ -16,8 +16,8 @@ maintainer       'Sliim'
 maintainer_email 'sliim@mailoo.org'
 license          'Apache-2.0'
 description      'Installs/Configures Stumpwm'
-chef_version '>= 12.5'
-version          '0.5.0'
+chef_version     '>= 12.5'
+version          '0.6.0'
 
 depends 'build-essential'
 

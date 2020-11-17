@@ -3,6 +3,13 @@ stumpwm CHANGELOG
 
 This file is used to list changes made in each version of the stumpwm cookbook.
 
+0.6.0
+-----
+- Set `quicklisp` configuration in `node[stumpwm][quicklisp]` attributes
+- *BREAKING CHANGE*: Attribute `node[stumpwm][quicklisp_dir]` moved to `node[stumpwm][quicklisp][install_dir]`
+- Added `node[stumpwm][quicklisp][loads]` attribute to set packages to load in sbcl init
+- Improved stumpwm build commands
+
 0.5.0
 -----
 - Added support for Ubuntu 18.04
