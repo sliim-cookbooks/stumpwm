@@ -3,6 +3,10 @@ stumpwm CHANGELOG
 
 This file is used to list changes made in each version of the stumpwm cookbook.
 
+0.6.1
+-----
+- Run make command in a login shell when building stumpwm
+
 0.6.0
 -----
 - Set `quicklisp` configuration in `node[stumpwm][quicklisp]` attributes
