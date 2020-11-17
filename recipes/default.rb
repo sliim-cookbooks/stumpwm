@@ -24,7 +24,7 @@ include_recipe 'stumpwm::quicklisp'
 
 buildenv = {
   SBCL_HOME: '/usr/lib/sbcl',
-  XDG_CACHE_HOME: "#{node['stumpwm']['quicklisp']['install_dir']}/common-lisp/#{node['stumpwm']['user']}"
+  XDG_CACHE_HOME: "#{node['stumpwm']['quicklisp']['install_dir']}/common-lisp/#{node['stumpwm']['user']}",
 }
 
 execute 'configure' do
